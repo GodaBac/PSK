@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head/>
+<h:body>
+    <h2>MyBatis Authors:</h2>
+    <ol>
+        <ui:repeat value="#{authorsMyBatis.authorsList}" var="author">
+            <li><h:link value="#{author.authorName}" outcome="series?authorId=#{author.id}"/> </li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText value="#{authorsMyBatis.authorsToCreate.authorName}" required="true" />
+        <h:commandButton value="Add new author" action="#{authorsMyBatis.createAuthor}" />
+    </h:form>
+    <h:link value="Back to index" outcome="/index"/>
+</h:body>
+</html>

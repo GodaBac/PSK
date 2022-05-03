@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<h:head><title>PSK-TP-1</title></h:head>
+<h:body>
+    <h2>Series:</h2>
+
+    <ol>
+        <ui:repeat value="#{authors.allAuthors}" var="author">
+            <li><h:link value="#{author.authorName}" outcome="series?authorId=#{author.authorId}" /> </li>
+        </ui:repeat>
+    </ol>
+
+    <h:form>
+        <h:inputText value="#{authors.authorToCreate.authorName}" required="true"/>
+        <h:commandButton value="Add new author" actionListener="#{authors.createAuthor}" action="index?faces-redirect=true"/>
+    </h:form>
+    <h:link outcome="myBatis/authors" value="MyBatis implementation"/>
+
+</h:body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core">
+<h:head/>
+<h:body>
+    <h2>#{seriesBooks.series.seriesName} books:</h2>
+    <ol>
+        <ui:repeat value="#{seriesBooks.series.bookList}" var="books">
+            <li>
+                <h4>#{books.bookName}</h4>
+                <!-- <h:link value="#{songs.song_name}"/>-->
+            </li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:inputText a:placeholder="bookName" value="#{seriesBooks.bookToCreate.bookName}" required="true" />
+        <!--        <h:inputText a:placeholder="album" value="#{albumSongs.songToCreate.album}" required="true" />-->
+        <!--        <h:inputText a:placeholder="artist" value="#{albumSongs.songToCreate.album.artist.artist_name}" required="true" />-->
+        <h:commandButton value="Add series book"
+                         actionListener="#{seriesBooks.createBook}"
+                         action="#{'books?faces-redirect=true&amp;seriesId='.concat(seriesBooks.series.seriesId)}">
+            <!--            #{'songs?faces-redirect=true&amp;artistId='.concat(albumSongs.album.artist.artist_id)}-->
+            <f:param name="seriesId" value="#{seriesBooks.series.seriesId}" />
+            <!--            <f:param name="artistId" value="#{albumSongs.album.artist.artist_id}" />-->
+        </h:commandButton>
+
+    </h:form>
+    <!--    <h:link value="Back to albums page" onclick="history.go(-2)"/>-->
+    <!--    <h:commandLink onclick="history.go(-1)"/>-->
+    <!--    <h:link outcome="albums" value="Back to albums page"/>-->
+</h:body>
+</html>
