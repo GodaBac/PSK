@@ -22,9 +22,9 @@
         <!--        <h:inputText a:placeholder="artist" value="#{albumSongs.songToCreate.album.artist.artist_name}" required="true" />-->
         <h:commandButton value="Add series book"
                          actionListener="#{seriesBooks.createBook}"
-                         action="#{'books?faces-redirect=true&amp;seriesId='.concat(seriesBooks.series.seriesId)}">
+                         action="#{'books?faces-redirect=true&amp;seriesId='.concat(seriesBooks.series.id)}">
             <!--            #{'songs?faces-redirect=true&amp;artistId='.concat(albumSongs.album.artist.artist_id)}-->
-            <f:param name="seriesId" value="#{seriesBooks.series.seriesId}" />
+            <f:param name="seriesId" value="#{seriesBooks.series.id}" />
             <!--            <f:param name="artistId" value="#{albumSongs.album.artist.artist_id}" />-->
         </h:commandButton>
 

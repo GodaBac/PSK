@@ -20,5 +20,6 @@
         <mapper resource="mybatis.xml/AuthorMapper.xml"/>
         <mapper resource="mybatis.xml/SeriesMapper.xml"/>
         <mapper resource="mybatis.xml/BookMapper.xml"/>
+        <mapper resource="mybatis.xml/AuthorsBooksMapper.xml"/>
     </mappers>
 </configuration>

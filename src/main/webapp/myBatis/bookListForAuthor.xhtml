@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head/>
+<h:body>
+    <h2>Authors who wrote #{bookAuthorsMyBatis.book.bookName}:</h2>
+    <ol>
+        <ui:repeat value="#{bookAuthorsMyBatis.book.author}" var="author">
+            <li>#{author.authorName}</li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="/myBatis/booksAndAuthors" value="Back to list"/>
+</h:body>
+</html>

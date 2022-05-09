@@ -22,7 +22,7 @@ public class Series implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Integer seriesId;
+    private Integer id;
 
     @Size(max = 50)
     @Column(name = "SERIES_NAME", nullable = false, unique = true)
@@ -49,10 +49,10 @@ public class Series implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Series series = (Series) o;
-        return seriesId.equals(series.seriesId) && seriesName.equals(series.seriesName) && seriesAuthor.equals(series.seriesAuthor);
+        return id.equals(series.id) && seriesName.equals(series.seriesName) && seriesAuthor.equals(series.seriesAuthor);
 
     }
 
     @Override
-    public int hashCode() {return Objects.hash(seriesId, seriesName, seriesAuthor); }
+    public int hashCode() {return Objects.hash(id, seriesName, seriesAuthor); }
 }

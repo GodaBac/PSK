@@ -20,8 +20,8 @@
         <h:inputText a:placeholder="booksAmount" value="#{authorSeries.seriesToCreate.booksAmount}" required="true" />
         <h:commandButton value="Add author series"
                          actionListener="#{authorSeries.createSeries}"
-                         action="#{'series?faces-redirect=true&amp;authorId='.concat(authorSeries.author.authorId)}">
-            <f:param name="authorId" value="#{authorSeries.author.authorId}" />
+                         action="#{'series?faces-redirect=true&amp;authorId='.concat(authorSeries.author.id)}">
+            <f:param name="authorId" value="#{authorSeries.author.id}" />
         </h:commandButton>
     </h:form>
     <h:link outcome="/myBatis/authors" value="Back to authors page"/>

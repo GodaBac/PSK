@@ -2,8 +2,6 @@ package mif.vu.lt.psktp1.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
-import mif.vu.lt.psktp1.entities.Series;
-import mif.vu.lt.psktp1.entities.Book;
 import mif.vu.lt.psktp1.mybatis.dao.AuthorMapper;
 import mif.vu.lt.psktp1.mybatis.model.Author;
 
@@ -36,6 +34,6 @@ public class AuthorsMyBatis {
     @Transactional
     public String createAuthor(){
         authorMapper.insert(authorsToCreate);
-        return "/myBatis/authors?faces-redirect=true";
+        return "/myBatis/booksAndAuthors?faces-redirect=true";
     }
 }

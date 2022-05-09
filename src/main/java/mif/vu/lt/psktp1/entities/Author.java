@@ -21,7 +21,7 @@ public class Author implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Integer authorId;
+    private Integer id;
 
     @Size(max = 50)
     @Column(name = "AUTHOR_NAME", nullable = false, unique = true)
@@ -42,11 +42,11 @@ public class Author implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Author author = (Author) o;
-        return authorId.equals(author.authorId) && authorName.equals(author.authorName);
+        return id.equals(author.id) && authorName.equals(author.authorName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(authorId, authorName);
+        return Objects.hash(id, authorName);
     }
 }

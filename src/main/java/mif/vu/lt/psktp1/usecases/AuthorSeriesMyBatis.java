@@ -2,10 +2,10 @@ package mif.vu.lt.psktp1.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
-import mif.vu.lt.psktp1.mybatis.model.Author;
-import mif.vu.lt.psktp1.mybatis.model.Series;
 import mif.vu.lt.psktp1.mybatis.dao.AuthorMapper;
 import mif.vu.lt.psktp1.mybatis.dao.SeriesMapper;
+import mif.vu.lt.psktp1.mybatis.model.Author;
+import mif.vu.lt.psktp1.mybatis.model.Series;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;

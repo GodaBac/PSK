@@ -5,7 +5,6 @@ import lombok.Setter;
 import mif.vu.lt.psktp1.entities.Series;
 import mif.vu.lt.psktp1.entities.Book;
 import mif.vu.lt.psktp1.entities.Author;
-import mif.vu.lt.psktp1.persistence.AuthorsDAO;
 import mif.vu.lt.psktp1.persistence.SeriesDAO;
 import mif.vu.lt.psktp1.persistence.BooksDAO;
 
@@ -48,7 +47,7 @@ public class SeriesBooks implements Serializable{
     @Transactional
     public void createBook(){
         bookToCreate.setSeries(this.series);
-        bookToCreate.setAuthorId(this.series.getAuthor().getAuthorId());
+        bookToCreate.setAuthorId(this.series.getAuthor().getId());
         booksDAO.persist(bookToCreate);
     }
 }

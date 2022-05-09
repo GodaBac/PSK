@@ -24,7 +24,10 @@
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
         </table>
         <table schema="public" tableName="book">
-            <generatedKey column="bookId" identity="true" sqlStatement="JDBC" />
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="Authors_Books">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
         </table>
     </context>
 </generatorConfiguration>

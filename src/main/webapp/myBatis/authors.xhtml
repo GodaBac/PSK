@@ -9,7 +9,7 @@
     <h2>MyBatis Authors:</h2>
     <ol>
         <ui:repeat value="#{authorsMyBatis.authorsList}" var="author">
-            <li><h:link value="#{author.authorName}" outcome="series?authorId=#{author.id}"/> </li>
+            <li><h:link value="#{author.authorName}" outcome="bookListForAuthor?authorId=#{author.id}"/> </li>
         </ui:repeat>
     </ol>
     <h:form>

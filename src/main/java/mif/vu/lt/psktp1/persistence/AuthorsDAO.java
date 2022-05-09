@@ -20,4 +20,10 @@ public class AuthorsDAO {
     public void persist(Author author) {this.em.persist(author);}
 
     public Author findOne(Integer authorId) {return em.find(Author.class, authorId); }
+
+    public boolean checkIfExists(Author author) {
+        List<Author> allAuthors;
+        allAuthors = loadAll();
+        return allAuthors.contains(author);
+    }
 }

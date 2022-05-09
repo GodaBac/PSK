@@ -17,11 +17,12 @@ import java.util.Objects;
 
 @Table(name = "BOOK")
 @Getter @Setter
-public class Book implements Serializable{
+public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer bookId;
+    @Column(name = "ID")
+    private Integer id;
 
     @Column(name = "AUTHOR")
     private Integer authorId;
@@ -47,9 +48,9 @@ public class Book implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(bookId, book.bookId) && Objects.equals(authorId, book.authorId) && Objects.equals(bookName, book.bookName) && series.equals(book.series);
+        return Objects.equals(id, book.id) && Objects.equals(authorId, book.authorId) && Objects.equals(bookName, book.bookName) && series.equals(book.series);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(bookId, authorId, bookName, series); }
+    public int hashCode() { return Objects.hash(id, authorId, bookName, series); }
 }
