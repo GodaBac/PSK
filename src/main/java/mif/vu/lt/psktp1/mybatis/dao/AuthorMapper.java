@@ -48,9 +48,9 @@ public interface AuthorMapper {
      */
     int updateByPrimaryKey(Author record);
 
-    List<Series> selectSeriesForAuthor(Integer id);
-
-    List<Book> selectBooksForAuthor(Integer id);
+//    List<Series> selectSeriesForAuthor(Integer id);
+//
+//    List<Book> selectBooksForAuthor(Integer id);
 
     int getResultCountByAuthorName(String name);
 

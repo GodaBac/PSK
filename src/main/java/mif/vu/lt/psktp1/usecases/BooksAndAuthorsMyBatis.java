@@ -19,9 +19,6 @@ public class BooksAndAuthorsMyBatis implements Serializable {
     @Inject
     private BookMapper bookMapper;
 
-    @Inject
-    private AuthorMapper authorMapper;
-
     @Getter
     private List<Book> allBooks;
 

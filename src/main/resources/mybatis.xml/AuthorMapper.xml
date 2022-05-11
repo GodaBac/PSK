@@ -9,19 +9,18 @@
     -->
     <id column="ID" jdbcType="INTEGER" property="id" />
     <result column="AUTHOR_NAME" jdbcType="VARCHAR" property="authorName" />
-    <collection property="seriesList" javaType="ArrayList" ofType="mif.vu.lt.psktp1.mybatis.model.Series" column="ID" select="selectSeriesForAuthor">
-      <result column="SERIES_AUTHOR" jdbcType="VARCHAR" property="seriesAuthor" />
-      <result column="SERIES_NAME" jdbcType="VARCHAR" property="seriesName" />
-      <result column="BOOKS_AMOUNT" jdbcType="INTEGER" property="booksAmount" />
-      <result column="AUTHOR_ID" jdbcType="INTEGER" property="authorId" />
-    </collection>
 
-    <collection property="bookList" javaType="ArrayList" ofType="mif.vu.lt.psktp1.mybatis.model.Book" column="ID" select="selectBooksForAuthor">
-      <result column="AUTHOR" jdbcType="INTEGER" property="author" />
-      <result column="BOOK_NAME" jdbcType="VARCHAR" property="bookName" />
-      <result column="SERIES_ID" jdbcType="INTEGER" property="seriesId" />
-    </collection>
+    <collection property="books" javaType="ArrayList"
+                ofType="mif.vu.lt.psktp1.mybatis.model.Book" column="id"
+                select="selectBooksForAuthor" />
   </resultMap>
+
+  <select id="selectBooksForAuthor" resultType="mif.vu.lt.psktp1.mybatis.model.Book">
+    SELECT *
+    FROM PUBLIC.BOOK b
+           JOIN PUBLIC.AUTHORS_BOOKS ab on b.id = ab.book_id
+    WHERE ab.author_id = #{id, jdbcType=BIGINT}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated

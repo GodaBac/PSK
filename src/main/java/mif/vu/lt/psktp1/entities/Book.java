@@ -12,7 +12,8 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Book.findAll", query = "select b from Book as b")
+        @NamedQuery(name = "Book.findAll", query = "select b from Book as b"),
+        @NamedQuery(name = "Book.findOne", query = " select b from Book as b where b.bookName = :bookName")
 })
 
 @Table(name = "BOOK")
@@ -31,14 +32,16 @@ public class Book implements Serializable {
     @Column(name = "BOOK_NAME", nullable = false, unique = true)
     private String bookName;
 
+    @Column
     @ManyToMany
-    @JoinTable(name = "AUTHORS_BOOKS")
-    @JoinColumn(name = "AUTHOR_ID")
-    private List<Author> authorList = new ArrayList<>();
+    @JoinTable(name = "AUTHORS_BOOKS",
+            joinColumns = @JoinColumn(name = "BOOK_ID"),
+            inverseJoinColumns = @JoinColumn(name = "AUTHOR_ID"))
+    List<Author> authors = new ArrayList<>();
 
-    @ManyToOne
-    @JoinColumn(name = "SERIES_ID")
-    private Series series;
+//    @ManyToOne
+//    @JoinColumn(name = "SERIES_ID")
+//    private Series series;
 
     public Book() {
     }
@@ -48,9 +51,9 @@ public class Book implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(id, book.id) && Objects.equals(authorId, book.authorId) && Objects.equals(bookName, book.bookName) && series.equals(book.series);
+        return Objects.equals(id, book.id) && Objects.equals(bookName, book.bookName);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(id, authorId, bookName, series); }
+    public int hashCode() { return Objects.hash(id, authorId, bookName); }
 }

@@ -44,8 +44,8 @@ public class BookAuthorsMyBatis implements Serializable {
     public String addAuthorForBook (Integer authorId) {
         if(authorsBooksMapper.getResultCountByAuthorAndBookId(authorId, this.book.getId()) == 0 ) {
             AuthorsBooks authorsBooks = new AuthorsBooks();
-            authorsBooks.setAuthorlistId(authorId);
-            authorsBooks.setBooklistId(this.book.getId());
+            authorsBooks.setAuthorListId(authorId);
+            authorsBooks.setBookListId(this.book.getId());
             authorsBooksMapper.insert(authorsBooks);
         }
         return "/myBatis/booksAndAuthors?faces-redirect=true";
@@ -58,8 +58,8 @@ public class BookAuthorsMyBatis implements Serializable {
         }
         Author addedAuthor = authorMapper.findByAuthorName(authorToAdd.getAuthorName());
         AuthorsBooks authorsBooks = new AuthorsBooks();
-        authorsBooks.setAuthorlistId(addedAuthor.getId());
-        authorsBooks.setBooklistId(this.book.getId());
+        authorsBooks.setAuthorListId(addedAuthor.getId());
+        authorsBooks.setBookListId(this.book.getId());
         authorsBooksMapper.insert(authorsBooks);
         return "/myBatis/booksAndAuthors?faces-redirect=true";
     }

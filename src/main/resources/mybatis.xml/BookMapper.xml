@@ -8,10 +8,22 @@
       This element was generated on Tue May 10 01:14:53 EEST 2022.
     -->
     <id column="ID" jdbcType="INTEGER" property="id" />
-    <result column="AUTHOR" jdbcType="INTEGER" property="author" />
+<!--    <result column="AUTHOR" jdbcType="INTEGER" property="author" />-->
     <result column="BOOK_NAME" jdbcType="VARCHAR" property="bookName" />
     <result column="SERIES_ID" jdbcType="INTEGER" property="seriesId" />
+
+    <collection property="author" javaType="ArrayList"
+                ofType="mif.vu.lt.psktp1.mybatis.model.Author" column="id"
+                select="selectAuthorsForBook" />
   </resultMap>
+
+  <select id="selectAuthorsForBook" resultType="mif.vu.lt.psktp1.mybatis.model.Author">
+    SELECT *
+    FROM PUBLIC.AUTHOR a
+           JOIN PUBLIC.AUTHORS_BOOKS ab on a.id = ab.author_id
+    WHERE ab.book_id = #{id, jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     <!--
       WARNING - @mbg.generated

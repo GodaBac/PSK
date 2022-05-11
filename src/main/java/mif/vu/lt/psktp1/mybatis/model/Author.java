@@ -1,5 +1,12 @@
 package mif.vu.lt.psktp1.mybatis.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
+@Getter
+@Setter
 public class Author {
     /**
      *
@@ -66,4 +73,8 @@ public class Author {
     public void setAuthorName(String authorName) {
         this.authorName = authorName;
     }
+
+    public Integer seriesId;
+
+    public List<Book> books;
 }

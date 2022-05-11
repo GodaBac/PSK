@@ -2,20 +2,16 @@ package mif.vu.lt.psktp1.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
-import mif.vu.lt.psktp1.entities.Series;
-import mif.vu.lt.psktp1.entities.Book;
 import mif.vu.lt.psktp1.entities.Author;
-import mif.vu.lt.psktp1.persistence.SeriesDAO;
+import mif.vu.lt.psktp1.entities.Book;
 import mif.vu.lt.psktp1.persistence.BooksDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Map;
 
 @Model
 public class SeriesBooks implements Serializable{
@@ -23,31 +19,25 @@ public class SeriesBooks implements Serializable{
     @Inject
     private BooksDAO booksDAO;
 
-    @Inject
-    private SeriesDAO seriesDAO;
-
-    @Getter @Setter
-    private Series series;
-
     @Getter @Setter
     private Book bookToCreate = new Book();
 
     @Getter @Setter
-    private List<Author> authorList;
+    private List<Book> allBooks;
+
+    @Getter @Setter
+    private List<Author> allAuthors;
 
     @PostConstruct
     public void init(){
-        Map<String, String> requestParameters =
-                FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-
-        Integer seriesId = Integer.parseInt(requestParameters.get("seriesId"));
-        this.series = seriesDAO.findOne(seriesId);
+        loadBooks();
     }
 
+    public void loadBooks() { this.allBooks = booksDAO.loadAll(); }
+
     @Transactional
-    public void createBook(){
-        bookToCreate.setSeries(this.series);
-        bookToCreate.setAuthorId(this.series.getAuthor().getId());
-        booksDAO.persist(bookToCreate);
+    public String createBook(){
+        this.booksDAO.persist(bookToCreate);
+        return "index?faces-redirect=true";
     }
 }

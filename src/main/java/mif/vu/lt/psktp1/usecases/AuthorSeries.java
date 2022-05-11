@@ -9,11 +9,10 @@ import mif.vu.lt.psktp1.persistence.AuthorsDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import java.io.Serializable;
-import java.util.Map;
+import java.util.List;
 
 @Model
 public class AuthorSeries implements Serializable{
@@ -30,19 +29,19 @@ public class AuthorSeries implements Serializable{
     @Getter @Setter
     private Series seriesToCreate = new Series();
 
+    @Getter
+    private List<Series> allSeries;
+
     @PostConstruct
     public void init(){
-        Map<String,String> requestParameters =
-                FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-
-        Integer authorId = Integer.parseInt(requestParameters.get("authorId"));
-        this.author = authorsDAO.findOne(authorId);
+        loadBooks();
     }
 
+    public void loadBooks() { this.allSeries = seriesDAO.loadAll(); }
+
     @Transactional
-    public void createSeries(){
-        seriesToCreate.setAuthor(this.author);
-        seriesToCreate.setSeriesAuthor(this.author.getAuthorName());
-        seriesDAO.persist(seriesToCreate);
+    public String createSeries(){
+        this.seriesDAO.persist(seriesToCreate);
+        return "index?faces-redirect=true";
     }
 }

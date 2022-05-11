@@ -9,9 +9,9 @@
 <h:body>
     <h2>#{authorSeries.author.authorName} Series:</h2>
     <ol>
-        <ui:repeat value="#{authorSeries.author.seriesList}" var="series">
+        <ui:repeat value="#{authorSeries.author.series}" var="series">
             <li>
-                <h:link value="#{series.seriesName} #{series.booksAmount}" outcome="books?seriesId=#{series.id}"/>
+                <h:link value="#{series.seriesName} #{series.booksAmount}" outcome="authors?seriesId=#{series.id}"/>
             </li>
         </ui:repeat>
     </ol>
@@ -19,12 +19,8 @@
         <h:inputText a:placeholder="seriesName" value="#{authorSeries.seriesToCreate.seriesName}" required="true" />
         <h:inputText a:placeholder="booksAmount" value="#{authorSeries.seriesToCreate.booksAmount}" required="true" />
         <!--        <h:inputText a:placeholder="songs_number" value="#{artistAlbums.albumToCreate.album_artist}" required="true" />-->
-        <h:commandButton value="Add author series"
-                         actionListener="#{authorSeries.createSeries}"
-                         action="#{'series?faces-redirect=true&amp;authorId='.concat(authorSeries.author.id)}">
-            <f:param name="authorId" value="#{authorSeries.author.id}" />
-        </h:commandButton>
+        <h:commandButton value="Add author series" action = "#{authorSeries.createSeries}"/>
     </h:form>
-    <h:link outcome="index" value="Back to authors page"/>
+    <h:link value="Back to index" outcome="/index"/>
 </h:body>
 </html>

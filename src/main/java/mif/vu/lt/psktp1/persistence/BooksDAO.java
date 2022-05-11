@@ -5,6 +5,7 @@ import mif.vu.lt.psktp1.entities.Book;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.util.List;
 
 @ApplicationScoped
@@ -20,4 +21,14 @@ public class BooksDAO {
     public void persist(Book book) { this.em.persist(book); }
 
     public Book findOne(Integer bookId) { return em.find(Book.class, bookId); }
+
+    public Book findByBookName(String bookName) {
+        try {
+            return em.createNamedQuery("Book.findOne", Book.class)
+                    .setParameter("bookName", bookName)
+                    .getSingleResult();
+        } catch (NoResultException exception) {
+            return null;
+        }
+    }
 }

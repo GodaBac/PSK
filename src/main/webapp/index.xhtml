@@ -6,19 +6,13 @@
       xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <h:head><title>PSK-TP-1</title></h:head>
 <h:body>
-    <h2>Series:</h2>
+    <h2>Admin actions:</h2>
+    <ul>
+        <li><h:link value="Create new Series" outcome="series"/></li>
+        <li><h:link value="Add new Author" outcome="seriesForAuthors"/></li>
+        <li><h:link value="Add new Book" outcome="createBook"/></li>
+    </ul>
 
-    <ol>
-        <ui:repeat value="#{authors.allAuthors}" var="author">
-            <li><h:link value="#{author.authorName}" outcome="series?authorId=#{author.id}" /> </li>
-        </ui:repeat>
-    </ol>
-
-    <h:form>
-        <h:inputText value="#{authors.authorToCreate.authorName}" required="true"/>
-        <h:commandButton value="Add new author" actionListener="#{authors.createAuthor}" action="index?faces-redirect=true"/>
-    </h:form>
-    <h:link outcome="myBatis/authors" value="MyBatis implementation"/>
-
+    <h:link value="MyBatis version" outcome="indexMB"/>
 </h:body>
 </html>

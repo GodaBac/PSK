@@ -21,6 +21,8 @@ public class AuthorsDAO {
 
     public Author findOne(Integer authorId) {return em.find(Author.class, authorId); }
 
+    public Author update(Author author) {return em.merge(author); }
+
     public boolean checkIfExists(Author author) {
         List<Author> allAuthors;
         allAuthors = loadAll();

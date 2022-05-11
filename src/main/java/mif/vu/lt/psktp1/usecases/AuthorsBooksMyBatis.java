@@ -20,18 +20,12 @@ public class AuthorsBooksMyBatis {
     @Inject
     AuthorMapper authorMapper;
 
-    @Inject
-    BookMapper bookMapper;
-
     @Getter
     @Setter
     private Author author;
 
-    @Getter
-    private List<Book> bookList;
-
-    @Getter
-    private List<Author> authorList;
+    @Getter @Setter
+    private Author authorToCreate = new Author();
 
     @PostConstruct
     public void init(){
@@ -39,13 +33,13 @@ public class AuthorsBooksMyBatis {
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         Integer authorId = Integer.parseInt(requestParameters.get("authorId"));
         this.author = authorMapper.selectByPrimaryKey(authorId);
-        this.loadAllBookAuthors();
+//        this.loadAllBookAuthors();
     }
-
-    private void loadAllAuthorBooks(){
-        this.bookList = authorMapper.selectBooksForAuthor(1);
-    }
-
-    private void loadAllBookAuthors(){this.authorList = bookMapper.selectAuthorsForBook(1);}
+//
+//    private void loadAllAuthorBooks(){
+//        this.bookList = authorMapper.selectBooksForAuthor(1);
+//    }
+//
+//    private void loadAllBookAuthors(){this.authorList = bookMapper.selectAuthorsForBook(1);}
 
 }

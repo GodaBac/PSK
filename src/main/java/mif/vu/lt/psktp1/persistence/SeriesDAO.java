@@ -17,7 +17,7 @@ public class SeriesDAO {
 
     public Series findOne(Integer seriesId) {return em.find(Series.class, seriesId);}
 
-    public List<Series> findAll() {return em.createNamedQuery("Series.findAll",Series.class).getResultList();} //
+    public List<Series> loadAll() {return em.createNamedQuery("Series.findAll",Series.class).getResultList();} //
 
     public Series update(Series series) {return  em.merge(series); }
 }

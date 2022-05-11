@@ -1,5 +1,7 @@
 package mif.vu.lt.psktp1.mybatis.model;
 
+import java.util.List;
+
 public class Book {
     /**
      *
@@ -132,4 +134,6 @@ public class Book {
     public void setSeriesId(Integer seriesId) {
         this.seriesId = seriesId;
     }
+
+    private List<Author> authors;
 }

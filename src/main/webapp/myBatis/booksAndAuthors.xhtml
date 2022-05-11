@@ -6,29 +6,27 @@
 >
 <h:head/>
 <h:body>
-    <h2>Books:</h2>
+    <h2>Authors:</h2>
     <ol>
-        <ui:repeat value="#{booksAndAuthorsMyBatis.allBooks}" var="book">
-            <li><h:link value="#{book.bookName}" outcome="/myBatis/booksAndAuthors?bookId=#{book.bookId}" /></li>
+        <ui:repeat value="#{book.author}" var="author">
+            <li><h:link value="#{author.authorName}" outcome="/myBatis/bookListForAuthor?authorId=#{author.id}" /></li>
 
-            <span>Authors: </span>
+            <span>Books: </span>
             <ul>
-                <ui:repeat value="#{book.author}" var="author">
-                    <li><h:link value="#{author.authorName}" outcome="/myBatis/bookListForAuthor?authorId=#{author.Id}" /></li>
+                <ui:repeat value="#{booksAndAuthorsMyBatis.allBooks}" var="book" >
+                    <li><h:link value="#{book.bookName}" outcome="/myBatis/authors?bookId=#{book.id}" /></li>
                 </ui:repeat>
             </ul>
             <hr/>
 
         </ui:repeat>
     </ol>
-    <!--<h1>Add new Reader</h1>
+    <h1>Add new Book</h1>
     <h:form>
-        <label>Reader username: </label>
-        <h:inputText value="#{readersAndBooksMB.readerToCreate.username}" required="true"/>
-        <label>Reader password: </label>
-        <h:inputText value="#{readersAndBooksMB.readerToCreate.password}" required="true"/>
-        <h:commandButton value="Add new reader" action="#{readersAndBooksMB.createReader()}" />
-    </h:form>-->
+        <label>Book name: </label>
+        <h:inputText value="#{booksAndAuthorsMyBatis.bookToCreate.bookName}" required="true"/>
+        <h:commandButton value="Add new book" action="#{booksAndAuthorsMyBatis.createBook()}" />
+    </h:form>
     <h:link value="Back to index" outcome="/index"/>
 </h:body>
 </html>

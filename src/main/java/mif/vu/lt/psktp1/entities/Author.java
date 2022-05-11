@@ -27,11 +27,12 @@ public class Author implements Serializable{
     @Column(name = "AUTHOR_NAME", nullable = false, unique = true)
     private String authorName;
 
-    @OneToMany(mappedBy = "author")
-    private List<Series> seriesList = new ArrayList<>();
+    @ManyToOne
+    @JoinColumn(name="SERIES_ID")
+    private Series series;
 
-    @ManyToMany(mappedBy = "authorList")
-    private List<Book> bookList = new ArrayList<>();
+    @ManyToMany(mappedBy = "authors")
+    private List<Book> books;
 
     public Author(){
 

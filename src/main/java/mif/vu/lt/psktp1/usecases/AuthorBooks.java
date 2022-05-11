@@ -2,7 +2,6 @@ package mif.vu.lt.psktp1.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
-import mif.vu.lt.psktp1.entities.Author;
 import mif.vu.lt.psktp1.entities.Book;
 import mif.vu.lt.psktp1.persistence.AuthorsDAO;
 import mif.vu.lt.psktp1.persistence.BooksDAO;
@@ -25,27 +24,18 @@ public class AuthorBooks implements Serializable {
     private BooksDAO booksDAO;
 
     @Getter @Setter
-    private Author authorToAdd = new Author();
+    private Book bookToAssign = new Book();
 
-    @Getter @Setter
-    private Book book;
-
-    @PostConstruct
-    public void init() {
-        Map<String, String> requestParameters =
-                FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        Integer bookId = Integer.parseInt(requestParameters.get("bookId"));
-        this.book = booksDAO.findOne(bookId);
-    }
 
     @Transactional
-    public void addAuthor() {
-        if (authorsDAO.checkIfExists(authorToAdd)) {
-            this.book.setAuthorId(authorToAdd.getId());
+    public String assignAuthorForBook(String authorId) {
+        Book assign = booksDAO.findByBookName(this.bookToAssign.getBookName());
+
+        if (assign != null) {
+            return "index?faces-redirect=true";
         }
         else {
-            authorToAdd.setBookList(this.authorToAdd.getBookList());
-            authorsDAO.persist(authorToAdd);
+            return "index?faces-redirect=true";
         }
     }
 

@@ -28,18 +28,21 @@ public class Series implements Serializable{
     @Column(name = "SERIES_NAME", nullable = false, unique = true)
     private String seriesName;
 
-    @Column(name = "SERIES_AUTHOR")
-    private String seriesAuthor;
+//    @Column(name = "SERIES_AUTHOR")
+//    private String seriesAuthor;
 
     @Column(name = "BOOKS_AMOUNT")
     private Integer booksAmount;
 
-    @ManyToOne
-    @JoinColumn(name = "AUTHOR_ID")
-    private Author author;
+//    @ManyToOne
+//    @JoinColumn(name = "AUTHOR_ID")
+//    private Author author;
+//
+//    @OneToMany(mappedBy = "series")
+//    private List<Book> bookList;
 
     @OneToMany(mappedBy = "series")
-    private List<Book> bookList = new ArrayList<>();
+    private List<Author> authors = new ArrayList<>();
 
     public Series() {
     }
@@ -49,10 +52,10 @@ public class Series implements Serializable{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Series series = (Series) o;
-        return id.equals(series.id) && seriesName.equals(series.seriesName) && seriesAuthor.equals(series.seriesAuthor);
+        return id.equals(series.id) && seriesName.equals(series.seriesName);
 
     }
 
     @Override
-    public int hashCode() {return Objects.hash(id, seriesName, seriesAuthor); }
+    public int hashCode() {return Objects.hash(id, seriesName); }
 }

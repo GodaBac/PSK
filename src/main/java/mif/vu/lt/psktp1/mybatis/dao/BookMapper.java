@@ -48,5 +48,5 @@ public interface BookMapper {
      */
     int updateByPrimaryKey(Book record);
 
-    List<Author> selectAuthorsForBook(Integer id);
+//    List<Author> selectAuthorsForBook(Integer id);
 }

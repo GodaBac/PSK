@@ -2,20 +2,34 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
->
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 <h:head/>
 <h:body>
-    <h2>MyBatis Authors:</h2>
-    <ol>
-        <ui:repeat value="#{authorsMyBatis.authorsList}" var="author">
-            <li><h:link value="#{author.authorName}" outcome="bookListForAuthor?authorId=#{author.id}"/> </li>
-        </ui:repeat>
-    </ol>
+    <h2>Assign author to this book</h2>
+
+    <h3>Choose from existing authors:</h3>
     <h:form>
-        <h:inputText value="#{authorsMyBatis.authorsToCreate.authorName}" required="true" />
-        <h:commandButton value="Add new author" action="#{authorsMyBatis.createAuthor}" />
+        <h:panelGrid columns="2">
+            <label>Author name: </label>
+            <ui:repeat value="#{bookAuthorsMyBatis.allExistingAuthors}" var="author">
+                <h:commandButton value="#{author.authorName}" action="#{bookAuthorsMyBatis.addAuthorForBook(author.id)}">
+                    <f:param name="bookId" value="#{bookAuthorsMyBatis.book.id}" />
+                </h:commandButton>
+            </ui:repeat>
+        </h:panelGrid>
     </h:form>
-    <h:link value="Back to index" outcome="/index"/>
+
+    <h3>Or add a new one:</h3>
+    <h:form>
+        <label>Author name: </label>
+        <h:inputText a:placeholder="name" value="#{bookAuthorsMyBatis.authorToAdd.authorName}" required="true" />
+        <h:commandButton value="Assign" action="#{bookAuthorsMyBatis.addNewAuthorForBook}" >
+            <f:param name="bookId" value="#{bookAuthorsMyBatis.book.id}" />
+        </h:commandButton>
+    </h:form>
+
+    <h:link outcome="/myBatis/booksAndAuthors" value="Back to list"/>
 </h:body>
 </html>
