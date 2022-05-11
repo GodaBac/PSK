@@ -15,31 +15,25 @@ import java.util.List;
 import java.util.Map;
 
 @Model
-public class AuthorsBooksMyBatis {
+public class BookLibraryMB {
 
     @Inject
-    AuthorMapper authorMapper;
+    private BookMapper bookMapper;
 
     @Getter
     @Setter
-    private Author author;
+    private Book book;
 
-    @Getter @Setter
-    private Author authorToCreate = new Author();
+    @Getter
+    @Setter
+    private Book bookToCreate = new Book();
 
     @PostConstruct
-    public void init(){
+    public void init() {
         Map<String, String> requestParameters =
                 FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        Integer authorId = Integer.parseInt(requestParameters.get("authorId"));
-        this.author = authorMapper.selectByPrimaryKey(authorId);
-//        this.loadAllBookAuthors();
+        Long bookId = Long.parseLong(requestParameters.get("bookId"));
+        this.book = bookMapper.selectByPrimaryKey(bookId);
     }
-//
-//    private void loadAllAuthorBooks(){
-//        this.bookList = authorMapper.selectBooksForAuthor(1);
-//    }
-//
-//    private void loadAllBookAuthors(){this.authorList = bookMapper.selectAuthorsForBook(1);}
 
 }

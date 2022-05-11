@@ -2,8 +2,8 @@ package mif.vu.lt.psktp1.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
-import mif.vu.lt.psktp1.entities.Author;
-import mif.vu.lt.psktp1.persistence.AuthorDAO;
+import mif.vu.lt.psktp1.entities.Library;
+import mif.vu.lt.psktp1.persistence.LibraryDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -13,31 +13,29 @@ import java.io.Serializable;
 import java.util.List;
 
 @Model
-public class Authors implements Serializable {
-
+public class Libraries implements Serializable {
     @Inject
-    private AuthorDAO authorDAO;
+    private LibraryDAO libraryDAO;
 
     @Getter
     @Setter
-    private Author authorToCreate = new Author();
+    private Library libraryToCreate = new Library();
 
     @Getter
-    private List<Author> allAuthors;
+    private List<Library> allLibraries;
 
     @PostConstruct
     public void init() {
-        loadAccounts();
+        loadLibraries();
     }
 
-    public void loadAccounts() {
-        this.allAuthors = authorDAO.loadAll();
+    public void loadLibraries() {
+        this.allLibraries = libraryDAO.loadAll();
     }
 
     @Transactional
-    public String createAuthor() {
-        this.authorDAO.persist(authorToCreate);
+    public String createLibrary() {
+        this.libraryDAO.persist(libraryToCreate);
         return "index?faces-redirect=true";
     }
-
 }

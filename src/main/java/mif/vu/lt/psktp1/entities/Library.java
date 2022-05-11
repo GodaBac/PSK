@@ -14,30 +14,31 @@ import java.util.Objects;
 
 
 @NamedQueries({
-        @NamedQuery(name = "Author.findAll", query = "SELECT a FROM Author AS a")
+        @NamedQuery(name = "Library.findAll", query = "SELECT l FROM Library AS l"),
+        @NamedQuery(name = "Library.findOne", query = " SELECT l FROM Library  AS l WHERE l.name = :name")
 })
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "AUTHOR")
-public class Author implements Serializable {
+@Table(name = "LIBRARY")
+public class Library implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Size(max = 20)
-    @Column(name = "FIRST_NAME", nullable = false)
-    private String firstName;
+    @Column(name = "NAME", nullable = false)
+    private String name;
 
-    @Size(max = 20)
-    @Column(name = "LAST_NAME", nullable = false)
-    private String lastName;
-
-    @OneToMany(mappedBy = "author")
-    private List<Book> books = new ArrayList<>();
+    @Column
+    @ManyToMany
+    @JoinTable(name = "BOOKS_LIBRARY",
+            joinColumns = @JoinColumn(name = "LIBRARY_ID"),
+            inverseJoinColumns = @JoinColumn(name = "BOOK_ID"))
+    List<Book> books = new ArrayList<>();
 
     @Override
     public boolean equals(Object o) {
@@ -47,12 +48,12 @@ public class Author implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Author author = (Author) o;
-        return id.equals(author.id) && firstName.equals(author.firstName) && lastName.equals(author.lastName);
+        Library library = (Library) o;
+        return id.equals(library.id) && name.equals(library.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, firstName, lastName);
+        return Objects.hash(id, name);
     }
 }

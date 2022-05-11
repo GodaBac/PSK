@@ -1,0 +1,15 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head/>
+<h:body>
+    <h2>Create new Library:</h2>
+    <h:form>
+        <h:panelGrid columns="3">
+            <h:outputLabel for="name">Enter name:</h:outputLabel>
+            <h:inputText id="name" value="#{libraries.libraryToCreate.name}" required="true" maxlength="20"/>
+            <br/><br/>
+            <h:commandButton value="Add new Library" action="#{libraries.createLibrary}"/>
+        </h:panelGrid>
+    </h:form>
+</h:body>
+</html>

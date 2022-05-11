@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head/>
+<h:body>
+    <h2>Libraries who have #{bookLibraryMB.book.title}:</h2>
+    <ol>
+        <ui:repeat value="#{bookLibraryMB.book.libraries}" var="library">
+            <li>#{library.name}</li>
+        </ui:repeat>
+    </ol>
+    <h:link outcome="/myBatis/librariesAndBooks" value="Back to list"/>
+</h:body>
+</html>

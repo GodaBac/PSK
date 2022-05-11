@@ -5,21 +5,21 @@
 <configuration>
     <typeAliases>
         <typeAlias type="mif.vu.lt.psktp1.mybatis.model.Author" alias="Author"/>
-        <typeAlias type="mif.vu.lt.psktp1.mybatis.model.Series" alias="Series"/>
+        <typeAlias type="mif.vu.lt.psktp1.mybatis.model.Library" alias="Library"/>
         <typeAlias type="mif.vu.lt.psktp1.mybatis.model.Book" alias="Book"/>
     </typeAliases>
     <environments default="development">
         <environment id="development">
             <transactionManager type="MANAGED"/>
             <dataSource type="JNDI">
-                <property name="data_source" value="SeriesDataSource"/>
+                <property name="data_source" value="LibrariesDataSource"/>
             </dataSource>
         </environment>
     </environments>
     <mappers>
         <mapper resource="mybatis.xml/AuthorMapper.xml"/>
-        <mapper resource="mybatis.xml/SeriesMapper.xml"/>
+        <mapper resource="mybatis.xml/LibraryMapper.xml"/>
         <mapper resource="mybatis.xml/BookMapper.xml"/>
-        <mapper resource="mybatis.xml/AuthorsBooksMapper.xml"/>
+        <mapper resource="mybatis.xml/BooksLibraryMapper.xml"/>
     </mappers>
 </configuration>

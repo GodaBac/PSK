@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="SeriesDB" uuid="346e14b7-8cb0-4496-ad2d-7b09d842f2d8">
+    <data-source source="LOCAL" name="LibrariesDB" uuid="a74393f6-0d53-4cce-b2ea-482942fcb24b">
       <driver-ref>h2.unified</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.h2.Driver</jdbc-driver>
-      <jdbc-url>jdbc:h2:~/h2database/SeriesDB;AUTO_SERVER=TRUE</jdbc-url>
+      <jdbc-url>jdbc:h2:~/h2database/LibrariesDB;AUTO_SERVER=TRUE</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

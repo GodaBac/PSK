@@ -4,9 +4,9 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
 <generatorConfiguration>
-    <context id="SeriesDB" targetRuntime="MyBatis3Simple">
+    <context id="LibrariesDB" targetRuntime="MyBatis3Simple">
         <jdbcConnection driverClass="org.h2.Driver"
-                        connectionURL="jdbc:h2:~/h2database/SeriesDB;AUTO_SERVER=TRUE"
+                        connectionURL="jdbc:h2:~/h2database/LibrariesDB;AUTO_SERVER=TRUE"
                         userId="sa"
                         password="sa">
         </jdbcConnection>
@@ -17,17 +17,21 @@
         <javaClientGenerator type="XMLMAPPER" targetPackage="mif.vu.lt.psktp1.mybatis.dao" targetProject="MAVEN" />
 
 
-        <table schema="public" tableName="author">
+        <table schema="PUBLIC" tableName="AUTHOR">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
         </table>
-        <table schema="public" tableName="series">
+        <table schema="PUBLIC" tableName="BOOK">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
         </table>
-        <table schema="public" tableName="book">
+        <table schema="PUBLIC" tableName="LIBRARY">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
         </table>
-        <table schema="public" tableName="Authors_Books">
+        <table schema="PUBLIC" tableName="BOOKS_LIBRARY">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+            <ignoreColumn column="opt_lock_version" />
         </table>
     </context>
 </generatorConfiguration>

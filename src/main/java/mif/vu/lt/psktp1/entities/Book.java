@@ -1,6 +1,8 @@
 package mif.vu.lt.psktp1.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -10,50 +12,46 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@Entity
-@NamedQueries({
-        @NamedQuery(name = "Book.findAll", query = "select b from Book as b"),
-        @NamedQuery(name = "Book.findOne", query = " select b from Book as b where b.bookName = :bookName")
-})
 
+@NamedQueries({
+        @NamedQuery(name = "Book.findAll", query = "SELECT b FROM Book AS b")
+})
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Entity
 @Table(name = "BOOK")
-@Getter @Setter
 public class Book implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
-    private Integer id;
+    private Long id;
 
-    @Column(name = "AUTHOR")
-    private Integer authorId;
+    @Column(name = "TITLE", nullable = false)
+    private String title;
 
-    @Size(max = 50)
-    @Column(name = "BOOK_NAME", nullable = false, unique = true)
-    private String bookName;
+    @ManyToOne
+    @JoinColumn(name="AUTHOR_ID")
+    private Author author;
 
-    @Column
-    @ManyToMany
-    @JoinTable(name = "AUTHORS_BOOKS",
-            joinColumns = @JoinColumn(name = "BOOK_ID"),
-            inverseJoinColumns = @JoinColumn(name = "AUTHOR_ID"))
-    List<Author> authors = new ArrayList<>();
-
-//    @ManyToOne
-//    @JoinColumn(name = "SERIES_ID")
-//    private Series series;
-
-    public Book() {
-    }
+    @ManyToMany(mappedBy = "books")
+    List<Library> libraries;
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Book book = (Book) o;
-        return Objects.equals(id, book.id) && Objects.equals(bookName, book.bookName);
+        return id.equals(book.id) && title.equals(book.title);
     }
 
     @Override
-    public int hashCode() { return Objects.hash(id, authorId, bookName); }
+    public int hashCode() {
+        return Objects.hash(id, title);
+    }
 }

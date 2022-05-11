@@ -6,7 +6,7 @@
 >
 <h:head/>
 <h:body>
-    <h2>Authors:</h2>
+    <h2>Books in the library:</h2>
     <ol>
         <ui:repeat value="#{authors.allAuthors}" var="author">
             <li><h:link value="#{author.firstName} #{author.lastName}" outcome="books?authorId=#{author.id}"/></li>
@@ -23,6 +23,5 @@
             <h:commandButton value="Add new author" action="#{authors.createAuthor}"/>
         </h:panelGrid>
     </h:form>
-    <h:link value="Back to index" outcome="/index"/>
 </h:body>
 </html>
