@@ -8,6 +8,8 @@ import mif.vu.lt.psktp1.mybatis.dao.LibraryMapper;
 import mif.vu.lt.psktp1.mybatis.model.Book;
 import mif.vu.lt.psktp1.mybatis.model.BooksLibrary;
 import mif.vu.lt.psktp1.mybatis.model.Library;
+import mif.vu.lt.psktp1.qualifiers.BookTypeProcessor;
+import mif.vu.lt.psktp1.qualifiers.Paperback;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -30,6 +32,9 @@ public class LibraryBooksMB implements Serializable {
 
     @Inject
     private BooksLibraryMapper booksLibraryMapper;
+
+    @Inject @Paperback
+    BookTypeProcessor bookTypeProcessorPaperback;
 
     @Getter
     @Setter
@@ -57,6 +62,7 @@ public class LibraryBooksMB implements Serializable {
     public String addNewBookForLibrary() {
         if (bookMapper.getResultCountByBookTitle(bookToAdd.getTitle()) == 0) {
             bookMapper.insert(bookToAdd);
+            System.out.println(bookTypeProcessorPaperback.BookType());
         }
         Book addedBook = bookMapper.findByName(bookToAdd.getTitle());
         BooksLibrary booksLibrary = new BooksLibrary();

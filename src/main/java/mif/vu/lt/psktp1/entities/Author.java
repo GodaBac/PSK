@@ -36,6 +36,10 @@ public class Author implements Serializable {
     @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
+    @Version
+    @Column(name = "OPT_LOCK_VERSION", columnDefinition = "integer default 0")
+    private Integer version;
+
     @OneToMany(mappedBy = "author")
     private List<Book> books = new ArrayList<>();
 

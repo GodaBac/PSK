@@ -2,7 +2,9 @@ package mif.vu.lt.psktp1.usecases;
 
 import lombok.Getter;
 import lombok.Setter;
+import mif.vu.lt.psktp1.decorators.AuthorDecorator;
 import mif.vu.lt.psktp1.entities.Author;
+import mif.vu.lt.psktp1.interceptors.LoggedInvocation;
 import mif.vu.lt.psktp1.persistence.AuthorDAO;
 
 import javax.annotation.PostConstruct;
@@ -17,6 +19,9 @@ public class Authors implements Serializable {
 
     @Inject
     private AuthorDAO authorDAO;
+
+    @Inject
+    private AuthorDecorator authorDecorator;
 
     @Getter
     @Setter
@@ -35,8 +40,10 @@ public class Authors implements Serializable {
     }
 
     @Transactional
+    @LoggedInvocation
     public String createAuthor() {
         this.authorDAO.persist(authorToCreate);
+        System.out.println("Decorator implementation: " + authorDecorator.DecoratedInt(2));
         return "index?faces-redirect=true";
     }
 

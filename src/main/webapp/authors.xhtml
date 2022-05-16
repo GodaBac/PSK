@@ -9,7 +9,10 @@
     <h2>Authors:</h2>
     <ol>
         <ui:repeat value="#{authors.allAuthors}" var="author">
-            <li><h:link value="#{author.firstName} #{author.lastName}" outcome="books?authorId=#{author.id}"/></li>
+            <li>
+                <h:link value="#{author.firstName} #{author.lastName}" outcome="books?authorId=#{author.id}"/>
+                <h:button value="Update" outcome="authorDetails?authorId=#{author.id}"/>
+            </li>
         </ui:repeat>
     </ol>
     <h:form>

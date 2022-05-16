@@ -28,4 +28,6 @@ public class AuthorDAO {
     public void setEntityManager(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+
+    public Author update(Author author) {return entityManager.merge(author); }
 }
